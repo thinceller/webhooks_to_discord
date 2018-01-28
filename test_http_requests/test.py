@@ -13,6 +13,7 @@ AUTH_KEY = {
 def main():
     """This is a main function.
     """
+
     status = input("What's happening?: ")
     update_status(status)
 
@@ -21,6 +22,7 @@ def create_oauth_session(auth_key):
 
     :param auth_key: Value and key for authentication
     """
+
     auth = OAuth1Session(
         auth_key["consumer_key"],
         auth_key["consumer_secret"],
@@ -34,6 +36,7 @@ def update_status(status):
 
     :param status: Input text.
     """
+
     url = "https://api.twitter.com/1.1/statuses/update.json"
     params = {"status": status}
 
