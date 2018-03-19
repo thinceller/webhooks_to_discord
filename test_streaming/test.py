@@ -16,9 +16,11 @@ def main():
     """This is a main function.
     """
 
+    track = input("検索ワード？：")
+
     url = "https://stream.twitter.com/1.1/statuses/filter.json"
     auth = create_oauth_session(AUTH_KEY)
-    res = requests.post(url, auth=auth, stream=True, data={"track":" #FGO"})
+    res = requests.post(url, auth=auth, stream=True, data={"track": track})
 
     if res.status_code == 200:
         print("connect succeed!")
