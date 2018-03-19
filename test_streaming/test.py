@@ -23,10 +23,10 @@ def main():
 
     while(True):
         try:
-    res = requests.post(url, auth=auth, stream=True, data={"track": track})
+            res = requests.post(url, auth=auth, stream=True, data={"track": track})
 
-    if res.status_code == 200:
-        print("connect succeed!")
+            if res.status_code == 200:
+                print("connect succeed!")
 
                 if res.encoding is None:
                     res.encoding = "utf-8"
@@ -43,8 +43,8 @@ def main():
                     except UnicodeEncodeError:
                         pass
 
-    else:
-        print("Error: ${res.status_code}")
+            else:
+                print("Error: ${res.status_code}")
 
         except KeyboardInterrupt:
             print("End")
