@@ -46,10 +46,9 @@ def main():
     else:
         print("Error: ${res.status_code}")
 
-    for line in res.iter_lines():
-        stream = json.loads(line.decode("utf-8"))
-        print(stream["text"])
-        print("---------------------------------")
+        except KeyboardInterrupt:
+            print("End")
+            break
 
 def create_oauth_session(auth_key):
     """Performs authentication.
