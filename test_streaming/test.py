@@ -20,10 +20,29 @@ def main():
 
     url = "https://stream.twitter.com/1.1/statuses/filter.json"
     auth = create_oauth_session(AUTH_KEY)
+
+    while(True):
+        try:
     res = requests.post(url, auth=auth, stream=True, data={"track": track})
 
     if res.status_code == 200:
         print("connect succeed!")
+
+                if res.encoding is None:
+                    res.encoding = "utf-8"
+
+                for line in res.iter_lines(chunk_size=1, decode_unicode=True):
+                    try:
+                        if line:
+                            stream = json.loads(line)
+
+                            print(stream["user"]["name"])
+                            print(stream["text"])
+                            print("---------------------------------")
+                    
+                    except UnicodeEncodeError:
+                        pass
+
     else:
         print("Error: ${res.status_code}")
 
